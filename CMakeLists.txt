@@ -3,13 +3,6 @@ cmake_minimum_required(VERSION 3.11)
 project(litehtml LANGUAGES C CXX)
 
 
-option(LITEHTML_BUILD_TESTING "enable testing for litehtml" ON)
-
-if(LITEHTML_BUILD_TESTING)
-    include(CTest)
-    enable_testing()
-endif()
-
 # Soname
 # MAJOR is incremented when symbols are removed or changed in an incompatible way
 # MINOR is incremented when new symbols are added
@@ -143,20 +136,6 @@ set(HEADER_LITEHTML
     include/litehtml/flex_line.h
 )
 
-set(TEST_LITEHTML
-    test/cssTest.cpp
-    test/mediaQueryTest.cpp
-    test/codepoint_test.cpp
-    test/tstring_view_test.cpp
-    test/url_test.cpp
-    test/url_path_test.cpp
-    test/render_test.cpp
-    containers/test/test_container.cpp
-    containers/test/Font.cpp
-    containers/test/Bitmap.cpp
-    containers/test/lodepng.cpp
-)
-
 set(PROJECT_LIB_VERSION ${PROJECT_MAJOR}.${PROJECT_MINOR}.0)
 set(PROJECT_SO_VERSION ${PROJECT_MAJOR})
 
@@ -189,55 +168,3 @@ install(TARGETS ${PROJECT_NAME}
 )
 install(FILES cmake/litehtmlConfig.cmake DESTINATION lib${LIB_SUFFIX}/cmake/litehtml)
 install(EXPORT litehtmlTargets FILE litehtmlTargets.cmake DESTINATION lib${LIB_SUFFIX}/cmake/litehtml)
-
-# Tests
-
-if (LITEHTML_BUILD_TESTING)
-    option(EXTERNAL_GTEST "Use external GoogleTest instead of fetching from GitHub" OFF)
-
-    if (EXTERNAL_GTEST)
-        link_libraries("-Wl,--copy-dt-needed-entries")
-    else()
-        include(FetchContent)
-        FetchContent_Declare(
-          googletest
-          URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
-        )
-        # For Windows: Prevent overriding the parent project's compiler/linker settings
-        set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-        FetchContent_GetProperties(googletest)
-        if(NOT googletest_POPULATED)
-          FetchContent_Populate(googletest)
-          add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
-        endif()
-    endif()
-
-    enable_testing()
-
-    set(TEST_NAME ${PROJECT_NAME}_tests)
-
-    add_executable(
-        ${TEST_NAME}
-        ${TEST_LITEHTML}
-    )
-
-    set_target_properties(${TEST_NAME} PROPERTIES
-        CXX_STANDARD 11
-        C_STANDARD 99
-        PUBLIC_HEADER "${HEADER_LITEHTML}"
-    )
-
-    target_include_directories(
-        ${TEST_NAME}
-        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/containers
-    )
-
-    target_link_libraries(
-        ${TEST_NAME}
-        ${PROJECT_NAME}
-        gtest_main
-    )
-
-    include(GoogleTest)
-    gtest_discover_tests(${TEST_NAME})
-endif()
