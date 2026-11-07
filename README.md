@@ -2,6 +2,10 @@
 
 **litehtml** is the lightweight HTML rendering engine with CSS2/CSS3 support. Note that **litehtml** itself does not draw any text, pictures or other graphics and that **litehtml** does not depend on any image/draw/font library. You are free to use any library to draw images, fonts and any other graphics. **litehtml** just parses HTML/CSS and places the HTML elements into the correct positions (renders HTML). To draw the HTML elements you have to implement the simple callback interface [document_container](https://github.com/Nomagno/litehtml/wiki/document_container). This interface is really simple, check it out [the header](include/litehtml/document_container.h)!
 
+# General usage workflow
+
+Once you have implemented `document_container`, get an instance of `document` for your specific HTML file with `document::createFromString(html_string, document_container_instance, master_css_string, user_css_string)`. Then, you may call `document::render()` and `document::draw()` methods in a loop for your `document` instance. The way to signal external events with the methods `document::on_mouse_enter()`, `document::on_lbutton_down()`, etc.
+
 # Where litehtml can be used
 
 **litehtml** can be used when you need to show HTML formatted text or even to create a mini-browser, but using it as a full-featured HTML engine is not recommended. Usually you don't need something like WebKit to show simple HTML tooltips or HTML-formatted text, **litehtml** is much better for these as it's more lightweight and easier to integrate into your application.
