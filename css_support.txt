@@ -1,26 +1,26 @@
 Selector			Is supported
-.class			        Yes
-#id			            Yes
-*			            Yes
-element	        		Yes
+.class					Yes
+#id						Yes
+*						Yes
+element					Yes
 element,element			Yes
 element element			Yes
 element>element			Yes
 element+element			Yes
-[attribute]		    	Yes
+[attribute]				Yes
 [attribute=value]		Yes
 [attribute~=value]		Yes
 [attribute|=value]		Yes
-:link       			Yes
+:link					Yes
 :visited
-:active		        	Yes
-:hover      			Yes
+:active					Yes
+:hover					Yes
 :focus
 :first-letter
 :first-line
 :first-child			Yes
-:before			        Yes
-:after		        	Yes
+:before					Yes
+:after					Yes
 :lang(language)
 element1~element2		Yes
 [attribute^=value]		Yes
@@ -29,12 +29,12 @@ element1~element2		Yes
 :first-of-type			Yes
 :last-of-type			Yes
 :only-of-type			Yes
-:only-child			    Yes
+:only-child				Yes
 :nth-child(n)			Yes
 :nth-last-child(n)		Yes
 :nth-of-type(n)			Yes
 :nth-last-of-type(n)	Yes
-:last-child			    Yes
+:last-child				Yes
 :root
 :empty
 :target
@@ -57,37 +57,37 @@ animation-timing-function
 animation-play-state
 appearance
 backface-visibility
-background						        Yes
+background								Yes
 background-attachment					Yes
 background-color						Yes
 background-image						Yes
 background-position						Yes
 background-repeat						Yes
-background-clip						    Yes
+background-clip							Yes
 background-origin						Yes
-background-size						    Yes
-border						            Yes
-border-bottom						    Yes
+background-size							Yes
+border									Yes
+border-bottom							Yes
 border-bottom-color						Yes
 border-bottom-style						Yes
 border-bottom-width						Yes
-border-collapse						    Yes
-border-color						    Yes
-border-left						        Yes
+border-collapse							Yes
+border-color							Yes
+border-left								Yes
 border-left-color						Yes
 border-left-style						Yes
 border-left-width						Yes
-border-right						    Yes
+border-right							Yes
 border-right-color						Yes
 border-right-style						Yes
 border-right-width						Yes
-border-spacing						    Yes
-border-style						    Yes
-border-top					        	Yes
+border-spacing							Yes
+border-style							Yes
+border-top								Yes
 border-top-color						Yes
 border-top-style						Yes
 border-top-width						Yes
-border-width				    		Yes
+border-width							Yes
 border-bottom-left-radius				Yes
 border-bottom-right-radius				Yes
 border-image
@@ -96,10 +96,10 @@ border-image-repeat
 border-image-slice
 border-image-source
 border-image-width
-border-radius						    Yes
+border-radius							Yes
 border-top-left-radius					Yes
 border-top-right-radius					Yes
-bottom						            Yes
+bottom									Yes
 box-align
 box-direction
 box-flex
@@ -108,12 +108,12 @@ box-lines
 box-ordinal-group
 box-orient
 box-pack
-box-sizing					        	Yes
+box-sizing								Yes
 box-shadow
 caption-side
-clear						            Yes
+clear									Yes
 clip
-color						            Yes
+color									Yes
 column-count
 column-fill
 column-gap
@@ -124,44 +124,44 @@ column-rule-width
 column-span
 column-width
 columns
-content						            Yes NOTE: Suppors only strings, attr, url, none, normal values
+content									Yes NOTE: Suppors only strings, attr, url, none, normal values
 counter-increment
 counter-reset
-cursor						            Yes
+cursor									Yes
 direction
-display						            Yes
+display									Yes
 empty-cells
-float						            Yes
-font						            Yes
-font-family						        Yes
-font-size						        Yes
-font-style						        Yes
-font-variant						    Yes
-font-weight						        Yes
+float									Yes
+font									Yes
+font-family								Yes
+font-size								Yes
+font-style								Yes
+font-variant							Yes
+font-weight								Yes
 @font-face
 font-size-adjust						Yes
 font-stretch
 grid-columns
 grid-rows
 hanging-punctuation
-height						            Yes
+height									Yes
 icon
-left            						Yes
+left									Yes
 letter-spacing
-line-height		        				Yes
-list-style				        		Yes
+line-height								Yes
+list-style								Yes
 list-style-image						Yes
 list-style-position						Yes
-list-style-type					    	Yes
-margin          						Yes
-margin-bottom	    					Yes
-margin-left			        			Yes
-margin-right				    		Yes
-margin-top        						Yes
-max-height	        					Yes
-max-width		        				Yes
-min-height			        			Yes
-min-width				        		Yes
+list-style-type							Yes
+margin									Yes
+margin-bottom							Yes
+margin-left								Yes
+margin-right							Yes
+margin-top								Yes
+max-height								Yes
+max-width								Yes
+min-height								Yes
+min-width								Yes
 nav-down
 nav-index
 nav-left
@@ -173,24 +173,24 @@ outline-color
 outline-offset
 outline-style
 outline-width
-overflow        						Yes NOTE: visible and hidden values are supported only
+overflow								Yes NOTE: visible and hidden values are supported only
 overflow-x
 overflow-y
-padding			            			Yes
-padding-bottom				    		Yes
-padding-left					    	Yes
-padding-right						    Yes
-padding-top						        Yes
+padding									Yes
+padding-bottom							Yes
+padding-left							Yes
+padding-right							Yes
+padding-top								Yes
 page-break-after
 page-break-before
 page-break-inside
 perspective
 perspective-origin
-position		        				Yes
+position								Yes
 punctuation-trim
 quotes
 resize
-right					            	Yes
+right									Yes
 rotation
 rotation-point
 table-layout
@@ -198,16 +198,16 @@ target
 target-name
 target-new
 target-position
-text-align						        Yes
-text-decoration						    Yes
-text-indent						        Yes
+text-align								Yes
+text-decoration							Yes
+text-indent								Yes
 text-justify
-text-outline						    Yes
+text-outline							Yes
 text-overflow
 text-shadow
-text-transform						    Yes
+text-transform							Yes
 text-wrap
-top						                Yes
+top										Yes
 transform
 transform-origin
 transform-style
@@ -217,11 +217,11 @@ transition-duration
 transition-timing-function
 transition-delay
 unicode-bidi
-vertical-align						    Yes
-visibility						        Yes
-width						            Yes
-white-space						        Yes
+vertical-align							Yes
+visibility								Yes
+width									Yes
+white-space								Yes
 word-spacing
 word-break
 word-wrap
-z-index						            Yes
+z-index									Yes
