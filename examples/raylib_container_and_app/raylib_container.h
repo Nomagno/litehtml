@@ -1,8 +1,10 @@
 #ifndef LH_RAYLIB_CONTAINER_H
 #define LH_RAYLIB_CONTAINER_H
 
+#include <unordered_map>
 #include <memory>
 #include <functional>
+#include <raylib.h>
 #include <litehtml/litehtml.h>
 
 // call back interface to draw text, images and other elements
@@ -13,6 +15,7 @@ private:
     int width;
     int height;
     litehtml::position clipping;
+    std::unordered_map<std::string, Image> image_cache;
 public:
     raylib_container(int width, int height);
     ~raylib_container() = default;

@@ -5,6 +5,7 @@
 #define WIN_H 1024
 
 int main(void) {
+    SetTraceLogLevel(LOG_ERROR);
     InitWindow(WIN_W, WIN_H, "NomRayBrowser");
 
     raylib_container renderer = raylib_container(WIN_W, WIN_H);
@@ -15,7 +16,7 @@ int main(void) {
 
     // It's called 'import css' but it's just an import file function in this impl so we'll reuse it
     std::string base_url;
-    renderer.import_css(html_string, "example.html", base_url);
+    renderer.import_css(html_string, "index.html", base_url);
 
     // Parses HTML
     // Can also pass master css and user css strings, but we'll use default for now
@@ -24,6 +25,7 @@ int main(void) {
 
     while (!WindowShouldClose()) {
         BeginDrawing();
+
         ClearBackground(LIGHTGRAY);
         
         // Computes positions
