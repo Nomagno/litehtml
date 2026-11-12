@@ -8,7 +8,7 @@ namespace litehtml
 {
 	class utf8_to_wchar
 	{
-		const byte* m_utf8;
+		const uint8_t* m_utf8;
 		std::wstring m_str;
 	public:
 		utf8_to_wchar(const char* val);
@@ -17,16 +17,16 @@ namespace litehtml
 			return m_str.c_str();
 		}
 	private:
-		ucode_t getb()
+		uint32_t getb()
 		{
 			if (!(*m_utf8)) return 0;
 			return *m_utf8++;
 		}
-		ucode_t get_next_utf8(ucode_t val)
+		uint32_t get_next_utf8(uint32_t val)
 		{
 			return (val & 0x3f);
 		}
-		ucode_t get_char();
+		uint32_t get_char();
 	};
 
 	class wchar_to_utf8

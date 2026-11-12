@@ -4,20 +4,20 @@
 
 litehtml::utf8_to_wchar::utf8_to_wchar(const char* val)
 {
-	m_utf8 = (const byte*) val;
+	m_utf8 = (const uint8_t*) val;
 	if (!m_utf8) return;
 
 	while (true)
 	{
-		ucode_t wch = get_char();
+		uint32_t wch = get_char();
 		if (!wch) break;
 		m_str += wch;
 	}
 }
 
-litehtml::ucode_t litehtml::utf8_to_wchar::get_char()
+uint32_t litehtml::utf8_to_wchar::get_char()
 {
-	ucode_t b1 = getb();
+	uint32_t b1 = getb();
 
 	if (!b1)
 	{
@@ -35,14 +35,14 @@ litehtml::ucode_t litehtml::utf8_to_wchar::get_char()
 	else if ((b1 & 0xe0) == 0xc0)
 	{
 		// 2-byte sequence: 00000yyyyyxxxxxx = 110yyyyy 10xxxxxx
-		ucode_t r = (b1 & 0x1f) << 6;
+		uint32_t r = (b1 & 0x1f) << 6;
 		r |= get_next_utf8(getb());
 		return r;
 	}
 	else if ((b1 & 0xf0) == 0xe0)
 	{
 		// 3-byte sequence: zzzzyyyyyyxxxxxx = 1110zzzz 10yyyyyy 10xxxxxx
-		ucode_t r = (b1 & 0x0f) << 12;
+		uint32_t r = (b1 & 0x0f) << 12;
 		r |= get_next_utf8(getb()) << 6;
 		r |= get_next_utf8(getb());
 		return r;

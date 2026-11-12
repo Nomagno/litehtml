@@ -33,7 +33,7 @@ void litehtml::el_image::parse_attributes()
 	}
 }
 
-void litehtml::el_image::draw(uint_ptr hdc, int x, int y, const position *clip, const std::shared_ptr<render_item> &ri)
+void litehtml::el_image::draw(uintptr_t hdc, int x, int y, const position *clip, const std::shared_ptr<render_item> &ri)
 {
 	position pos = ri->pos();
 	pos.x += x;

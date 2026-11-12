@@ -45,7 +45,7 @@ namespace litehtml
 		string					m_list_style_image;
 		string					m_list_style_image_baseurl;
 		background				m_bg;
-		uint_ptr				m_font;
+		uintptr_t				m_font;
 		css_length				m_font_size;
 		string					m_font_family;
 		font_weight				m_font_weight;
@@ -216,8 +216,8 @@ namespace litehtml
 		int get_font_size() const;
 		void set_font_size(int mFontSize);
 
-		uint_ptr get_font() const;
-		void set_font(uint_ptr mFont);
+		uintptr_t get_font() const;
+		void set_font(uintptr_t mFont);
 
 		const font_metrics& get_font_metrics() const;
 		void set_font_metrics(const font_metrics& mFontMetrics);
@@ -536,12 +536,12 @@ namespace litehtml
 		m_font_size = (float)mFontSize;
 	}
 
-	inline uint_ptr css_properties::get_font() const
+	inline uintptr_t css_properties::get_font() const
 	{
 		return m_font;
 	}
 
-	inline void css_properties::set_font(uint_ptr mFont)
+	inline void css_properties::set_font(uintptr_t mFont)
 	{
 		m_font = mFont;
 	}

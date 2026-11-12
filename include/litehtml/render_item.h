@@ -366,8 +366,8 @@ namespace litehtml
 		virtual void set_inline_boxes( position::vector& boxes ) {};
 		virtual void add_inline_box( const position& box ) {};
 		virtual void clear_inline_boxes() {};
-        void draw_stacking_context( uint_ptr hdc, int x, int y, const position* clip, bool with_positioned );
-        virtual void draw_children( uint_ptr hdc, int x, int y, const position* clip, draw_flag flag, int zindex );
+        void draw_stacking_context( uintptr_t hdc, int x, int y, const position* clip, bool with_positioned );
+        virtual void draw_children( uintptr_t hdc, int x, int y, const position* clip, draw_flag flag, int zindex );
         virtual int get_draw_vertical_offset() { return 0; }
         virtual std::shared_ptr<element> get_child_by_point(int x, int y, int client_x, int client_y, draw_flag flag, int zindex);
         std::shared_ptr<element> get_element_by_point(int x, int y, int client_x, int client_y);

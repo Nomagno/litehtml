@@ -432,7 +432,7 @@ std::shared_ptr<litehtml::render_item> litehtml::render_item_table::init()
     return shared_from_this();
 }
 
-void litehtml::render_item_table::draw_children(uint_ptr hdc, int x, int y, const position* clip, draw_flag flag, int zindex)
+void litehtml::render_item_table::draw_children(uintptr_t hdc, int x, int y, const position* clip, draw_flag flag, int zindex)
 {
     if (!m_grid) return;
 

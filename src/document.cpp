@@ -137,9 +137,9 @@ litehtml::document::ptr litehtml::document::createFromString( const char* str, d
 	return doc;
 }
 
-litehtml::uint_ptr litehtml::document::add_font( const char* name, int size, const char* weight, const char* style, const char* decoration, font_metrics* fm )
+uintptr_t litehtml::document::add_font( const char* name, int size, const char* weight, const char* style, const char* decoration, font_metrics* fm )
 {
-	uint_ptr ret = 0;
+	uintptr_t ret = 0;
 
 	if(!name)
 	{
@@ -250,7 +250,7 @@ litehtml::uint_ptr litehtml::document::add_font( const char* name, int size, con
 	return ret;
 }
 
-litehtml::uint_ptr litehtml::document::get_font( const char* name, int size, const char* weight, const char* style, const char* decoration, font_metrics* fm )
+uintptr_t litehtml::document::get_font( const char* name, int size, const char* weight, const char* style, const char* decoration, font_metrics* fm )
 {
 	if(!size)
 	{
@@ -322,7 +322,7 @@ int litehtml::document::render( int max_width, render_type rt )
 	return ret;
 }
 
-void litehtml::document::draw( uint_ptr hdc, int x, int y, const position* clip )
+void litehtml::document::draw( uintptr_t hdc, int x, int y, const position* clip )
 {
 	if(m_root && m_root_render)
 	{

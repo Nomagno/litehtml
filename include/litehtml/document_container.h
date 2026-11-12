@@ -20,29 +20,29 @@ namespace litehtml
 		web_color		color;
 		position		pos;
 		int				index;
-		uint_ptr		font;
+		uintptr_t		font;
 	};
 
 	// call back interface to draw text, images and other elements
 	class document_container
 	{
 	public:
-		virtual litehtml::uint_ptr	create_font(const char* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm) = 0;
-		virtual void				delete_font(litehtml::uint_ptr hFont) = 0;
-		virtual int					text_width(const char* text, litehtml::uint_ptr hFont) = 0;
-		virtual void				draw_text(litehtml::uint_ptr hdc, const char* text, litehtml::uint_ptr hFont, litehtml::web_color color, const litehtml::position& pos) = 0;
+		virtual uintptr_t	create_font(const char* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm) = 0;
+		virtual void				delete_font(uintptr_t hFont) = 0;
+		virtual int					text_width(const char* text, uintptr_t hFont) = 0;
+		virtual void				draw_text(uintptr_t hdc, const char* text, uintptr_t hFont, litehtml::web_color color, const litehtml::position& pos) = 0;
 		virtual int					pt_to_px(int pt) const = 0;
 		virtual int					get_default_font_size() const = 0;
 		virtual const char*			get_default_font_name() const = 0;
-		virtual void				draw_list_marker(litehtml::uint_ptr hdc, const litehtml::list_marker& marker) = 0;
+		virtual void				draw_list_marker(uintptr_t hdc, const litehtml::list_marker& marker) = 0;
 		virtual void				load_image(const char* src, const char* baseurl, bool redraw_on_ready) = 0;
 		virtual void				get_image_size(const char* src, const char* baseurl, litehtml::size& sz) = 0;
 		// Note: regular <img> images are also drawn with draw_background
 		// bg is guaranteed to have at least one item.
 		// backgrounds in bg are in CSS order - the last one is the farthest from the user.
 		// only the last background has valid background-color.
-		virtual void				draw_background(litehtml::uint_ptr hdc, const std::vector<litehtml::background_paint>& bg) = 0;
-		virtual void				draw_borders(litehtml::uint_ptr hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) = 0;
+		virtual void				draw_background(uintptr_t hdc, const std::vector<litehtml::background_paint>& bg) = 0;
+		virtual void				draw_borders(uintptr_t hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) = 0;
 
 		virtual	void				set_caption(const char* caption) = 0;
 		virtual	void				set_base_url(const char* base_url) = 0;

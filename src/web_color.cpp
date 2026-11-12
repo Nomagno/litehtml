@@ -189,9 +189,9 @@ litehtml::web_color litehtml::web_color::from_string(const string& _str, documen
 		}
 		char* sss = nullptr;
 		web_color clr;
-		clr.red		= (byte) strtol(red.c_str(),	&sss, 16);
-		clr.green	= (byte) strtol(green.c_str(),	&sss, 16);
-		clr.blue	= (byte) strtol(blue.c_str(),	&sss, 16);
+		clr.red		= (uint8_t) strtol(red.c_str(),	&sss, 16);
+		clr.green	= (uint8_t) strtol(green.c_str(),	&sss, 16);
+		clr.blue	= (uint8_t) strtol(blue.c_str(),	&sss, 16);
 		return clr;
 	} else if(!strncmp(str, "rgb", 3))
 	{
@@ -213,10 +213,10 @@ litehtml::web_color litehtml::web_color::from_string(const string& _str, documen
 
 		web_color clr;
 
-		if(tokens.size() >= 1)	clr.red		= (byte) atoi(tokens[0].c_str());
-		if(tokens.size() >= 2)	clr.green	= (byte) atoi(tokens[1].c_str());
-		if(tokens.size() >= 3)	clr.blue	= (byte) atoi(tokens[2].c_str());
-		if(tokens.size() >= 4)	clr.alpha	= (byte) (t_strtod(tokens[3].c_str(), nullptr) * 255.0);
+		if(tokens.size() >= 1)	clr.red		= (uint8_t) atoi(tokens[0].c_str());
+		if(tokens.size() >= 2)	clr.green	= (uint8_t) atoi(tokens[1].c_str());
+		if(tokens.size() >= 3)	clr.blue	= (uint8_t) atoi(tokens[2].c_str());
+		if(tokens.size() >= 4)	clr.alpha	= (uint8_t) (t_strtod(tokens[3].c_str(), nullptr) * 255.0);
 
 		return clr;
 	} else

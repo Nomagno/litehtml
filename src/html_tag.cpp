@@ -292,7 +292,7 @@ void litehtml::html_tag::get_content_size( size& sz, int max_width )
 	}
 }
 
-void litehtml::html_tag::draw(uint_ptr hdc, int x, int y, const position *clip, const std::shared_ptr<render_item> &ri)
+void litehtml::html_tag::draw(uintptr_t hdc, int x, int y, const position *clip, const std::shared_ptr<render_item> &ri)
 {
 	position pos = ri->pos();
 	pos.x	+= x;
@@ -341,7 +341,7 @@ litehtml::string litehtml::html_tag::get_custom_property(string_id name, const s
 }
 
 template<class Type, litehtml::property_type property_value_type, Type litehtml::property_value::* property_value_member>
-const Type& litehtml::html_tag::get_property_impl(string_id name, bool inherited, const Type& default_value, uint_ptr css_properties_member_offset) const
+const Type& litehtml::html_tag::get_property_impl(string_id name, bool inherited, const Type& default_value, uintptr_t css_properties_member_offset) const
 {
 	const property_value& value = m_style.get_property(name);
 
@@ -353,7 +353,7 @@ const Type& litehtml::html_tag::get_property_impl(string_id name, bool inherited
 	{
 		if (auto _parent = parent())
 		{
-			return *(Type*)((byte*)&_parent->css() + css_properties_member_offset);
+			return *(Type*)((uint8_t*)&_parent->css() + css_properties_member_offset);
 		}
 		return default_value;
 	}
@@ -362,52 +362,52 @@ const Type& litehtml::html_tag::get_property_impl(string_id name, bool inherited
 	return default_value;
 }
 
-int litehtml::html_tag::get_enum_property(string_id name, bool inherited, int default_value, uint_ptr css_properties_member_offset) const
+int litehtml::html_tag::get_enum_property(string_id name, bool inherited, int default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<int, prop_type_enum_item, &property_value::m_enum_item>(name, inherited, default_value, css_properties_member_offset);
 }
 
-int litehtml::html_tag::get_int_property(string_id name, bool inherited, int default_value, uint_ptr css_properties_member_offset) const
+int litehtml::html_tag::get_int_property(string_id name, bool inherited, int default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<int, prop_type_enum_item, &property_value::m_enum_item>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::css_length litehtml::html_tag::get_length_property(string_id name, bool inherited, css_length default_value, uint_ptr css_properties_member_offset) const
+litehtml::css_length litehtml::html_tag::get_length_property(string_id name, bool inherited, css_length default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<css_length, prop_type_length, &property_value::m_length>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::web_color litehtml::html_tag::get_color_property(string_id name, bool inherited, web_color default_value, uint_ptr css_properties_member_offset) const
+litehtml::web_color litehtml::html_tag::get_color_property(string_id name, bool inherited, web_color default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<web_color, prop_type_color, &property_value::m_color>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::string litehtml::html_tag::get_string_property(string_id name, bool inherited, const string& default_value, uint_ptr css_properties_member_offset) const
+litehtml::string litehtml::html_tag::get_string_property(string_id name, bool inherited, const string& default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<string, prop_type_string, &property_value::m_string>(name, inherited, default_value, css_properties_member_offset);
 }
 
-float litehtml::html_tag::get_number_property(string_id name, bool inherited, float default_value, uint_ptr css_properties_member_offset) const
+float litehtml::html_tag::get_number_property(string_id name, bool inherited, float default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<float, prop_type_number, &property_value::m_number>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::string_vector litehtml::html_tag::get_string_vector_property(string_id name, bool inherited, const string_vector& default_value, uint_ptr css_properties_member_offset) const
+litehtml::string_vector litehtml::html_tag::get_string_vector_property(string_id name, bool inherited, const string_vector& default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<string_vector, prop_type_string_vector, &property_value::m_string_vector>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::int_vector litehtml::html_tag::get_int_vector_property(string_id name, bool inherited, const int_vector& default_value, uint_ptr css_properties_member_offset) const
+litehtml::int_vector litehtml::html_tag::get_int_vector_property(string_id name, bool inherited, const int_vector& default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<int_vector, prop_type_enum_item_vector, &property_value::m_enum_item_vector>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::length_vector litehtml::html_tag::get_length_vector_property(string_id name, bool inherited, const length_vector& default_value, uint_ptr css_properties_member_offset) const
+litehtml::length_vector litehtml::html_tag::get_length_vector_property(string_id name, bool inherited, const length_vector& default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<length_vector, prop_type_length_vector, &property_value::m_length_vector>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::size_vector litehtml::html_tag::get_size_vector_property(string_id name, bool inherited, const size_vector& default_value, uint_ptr css_properties_member_offset) const
+litehtml::size_vector litehtml::html_tag::get_size_vector_property(string_id name, bool inherited, const size_vector& default_value, uintptr_t css_properties_member_offset) const
 {
 	return get_property_impl<size_vector, prop_type_size_vector, &property_value::m_size_vector>(name, inherited, default_value, css_properties_member_offset);
 }
@@ -899,7 +899,7 @@ bool litehtml::html_tag::is_break() const
 	return false;
 }
 
-void litehtml::html_tag::draw_background(uint_ptr hdc, int x, int y, const position *clip,
+void litehtml::html_tag::draw_background(uintptr_t hdc, int x, int y, const position *clip,
 										 const std::shared_ptr<render_item> &ri)
 {
 	position pos = ri->pos();
@@ -1223,7 +1223,7 @@ void litehtml::html_tag::init_one_background_paint(int i, position pos, backgrou
 	bg_paint.is_root		= is_root();
 }
 
-void litehtml::html_tag::draw_list_marker( uint_ptr hdc, const position& pos )
+void litehtml::html_tag::draw_list_marker( uintptr_t hdc, const position& pos )
 {
 	list_marker lm;
 

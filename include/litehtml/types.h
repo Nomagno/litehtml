@@ -22,9 +22,6 @@ namespace litehtml
 	const unsigned int font_decoration_linethrough	= 0x02;
 	const unsigned int font_decoration_overline		= 0x04;
 
-	typedef unsigned char	byte;
-	typedef unsigned int	ucode_t;
-
 	struct margins
 	{
 		int	left;
@@ -170,7 +167,7 @@ namespace litehtml
 
 	struct font_item
 	{
-		uint_ptr		font;
+		uintptr_t		font;
 		font_metrics	metrics;
 	};
 
@@ -458,7 +455,7 @@ namespace litehtml
 
 #define  css_units_strings	"none;%;in;cm;mm;em;ex;pt;pc;px;dpi;dpcm;vw;vh;vmin;vmax;rem"
 
-	enum css_units : byte
+	enum css_units : uint8_t
 	{
 		css_units_none,
 		css_units_percentage,

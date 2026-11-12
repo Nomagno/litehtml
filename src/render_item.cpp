@@ -534,7 +534,7 @@ void litehtml::render_item::calc_document_size( litehtml::size& sz, litehtml::si
     }
 }
 
-void litehtml::render_item::draw_stacking_context( uint_ptr hdc, int x, int y, const position* clip, bool with_positioned )
+void litehtml::render_item::draw_stacking_context( uintptr_t hdc, int x, int y, const position* clip, bool with_positioned )
 {
     if(!is_visible()) return;
 
@@ -577,7 +577,7 @@ void litehtml::render_item::draw_stacking_context( uint_ptr hdc, int x, int y, c
     }
 }
 
-void litehtml::render_item::draw_children(uint_ptr hdc, int x, int y, const position* clip, draw_flag flag, int zindex)
+void litehtml::render_item::draw_children(uintptr_t hdc, int x, int y, const position* clip, draw_flag flag, int zindex)
 {
     position pos = m_pos;
     pos.x += x;

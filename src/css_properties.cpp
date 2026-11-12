@@ -2,7 +2,7 @@
 #include "css_properties.h"
 #include <cmath>
 
-#define offset(member) ((uint_ptr)&this->member - (uint_ptr)this)
+#define offset(member) ((uintptr_t)&this->member - (uintptr_t)this)
 
 void litehtml::css_properties::compute(const element* el, const document::ptr& doc)
 {

@@ -75,9 +75,9 @@ namespace litehtml
 		virtual ~document();
 
 		document_container*				container()	{ return m_container; }
-		uint_ptr						get_font(const char* name, int size, const char* weight, const char* style, const char* decoration, font_metrics* fm);
+		uintptr_t						get_font(const char* name, int size, const char* weight, const char* style, const char* decoration, font_metrics* fm);
 		int								render(int max_width, render_type rt = render_all);
-		void							draw(uint_ptr hdc, int x, int y, const position* clip);
+		void							draw(uintptr_t hdc, int x, int y, const position* clip);
 		web_color						get_def_color()	{ return m_def_color; }
 		int								to_pixels(const char* str, int fontSize, bool* is_percent = nullptr) const;
 		void 							cvt_units(css_length& val, int fontSize, int size = 0) const;
@@ -108,7 +108,7 @@ namespace litehtml
 		static litehtml::document::ptr	createFromString(const char* str, litehtml::document_container* objPainter, const char* master_styles = litehtml::master_css, const char* user_styles = "");
 	
 	private:
-		uint_ptr	add_font(const char* name, int size, const char* weight, const char* style, const char* decoration, font_metrics* fm);
+		uintptr_t	add_font(const char* name, int size, const char* weight, const char* style, const char* decoration, font_metrics* fm);
 
 		void create_node(void* gnode, elements_list& elements, bool parseTextNode);
 		bool update_media_lists(const media_features& features);

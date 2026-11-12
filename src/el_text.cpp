@@ -82,7 +82,7 @@ void litehtml::el_text::compute_styles(bool recursive)
 	}
 
 	font_metrics fm;
-	uint_ptr font = 0;
+	uintptr_t font = 0;
 	if (el_parent)
 	{
 		font = el_parent->css().get_font();
@@ -100,7 +100,7 @@ void litehtml::el_text::compute_styles(bool recursive)
 	m_draw_spaces = fm.draw_spaces;
 }
 
-void litehtml::el_text::draw(uint_ptr hdc, int x, int y, const position *clip, const std::shared_ptr<render_item> &ri)
+void litehtml::el_text::draw(uintptr_t hdc, int x, int y, const position *clip, const std::shared_ptr<render_item> &ri)
 {
 	if(is_white_space() && !m_draw_spaces)
 	{
@@ -118,7 +118,7 @@ void litehtml::el_text::draw(uint_ptr hdc, int x, int y, const position *clip, c
 		{
 			document::ptr doc = get_document();
 
-			uint_ptr font = el_parent->css().get_font();
+			uintptr_t font = el_parent->css().get_font();
 			if(font)
 			{
 				web_color color = el_parent->css().get_color();
