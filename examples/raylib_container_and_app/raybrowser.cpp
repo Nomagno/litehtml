@@ -4,7 +4,12 @@
 #define WIN_W 1024
 #define WIN_H 1024
 
-int main(void) {
+int main(int argc, char *argv[]) {
+    std::string initial_file = "index.html";
+
+    if (argc >= 2)
+        initial_file = argv[1];
+
     SetTraceLogLevel(LOG_ERROR);
     InitWindow(WIN_W, WIN_H, "NomRayBrowser");
 
@@ -14,9 +19,8 @@ int main(void) {
 
     std::string html_string = "";
 
-    // It's called 'import css' but it's just an import file function in this impl so we'll reuse it
     std::string base_url;
-    renderer.import_css(html_string, "index.html", base_url);
+    renderer.import_file(html_string, initial_file, base_url);
 
     // Parses HTML
     // Can also pass master css and user css strings, but we'll use default for now

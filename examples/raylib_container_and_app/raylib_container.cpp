@@ -360,7 +360,7 @@ void raylib_container::transform_text(litehtml::string& text, litehtml::text_tra
     }
 }
 
-void raylib_container::import_css(litehtml::string& text, const litehtml::string& url, litehtml::string& baseurl) {
+void raylib_container::import_file(litehtml::string& text, const litehtml::string& url, litehtml::string& baseurl) {
     // TODO: There is no documentation indicating that this has to be done
     baseurl = makeurl(baseurl.c_str(), url.c_str());
 

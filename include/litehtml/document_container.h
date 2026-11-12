@@ -50,7 +50,7 @@ namespace litehtml
 		virtual void				on_anchor_click(const char* url, const litehtml::element::ptr& el) = 0;
 		virtual	void				set_cursor(const char* cursor) = 0;
 		virtual	void				transform_text(litehtml::string& text, litehtml::text_transform tt) = 0;
-		virtual void				import_css(litehtml::string& text, const litehtml::string& url, litehtml::string& baseurl) = 0;
+		virtual void				import_file(litehtml::string& text, const litehtml::string& url, litehtml::string& baseurl) = 0;
 		virtual void				set_clip(const litehtml::position& pos, const litehtml::border_radiuses& bdr_radius) = 0;
 		virtual void				del_clip() = 0;
 		virtual void				get_client_rect(litehtml::position& client) const = 0;

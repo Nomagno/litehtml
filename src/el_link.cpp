@@ -23,7 +23,7 @@ void litehtml::el_link::parse_attributes()
 		{
 			string css_text;
 			string css_baseurl;
-			doc->container()->import_css(css_text, href, css_baseurl);
+			doc->container()->import_file(css_text, href, css_baseurl);
 			if(!css_text.empty())
 			{
 				doc->add_stylesheet(css_text.c_str(), css_baseurl.c_str(), media);

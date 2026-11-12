@@ -174,7 +174,7 @@ void litehtml::css::parse_atrule(const string& text, const char* baseurl, const 
 					{
 						css_baseurl = baseurl;
 					}
-					doc_cont->import_css(css_text, url, css_baseurl);
+					doc_cont->import_file(css_text, url, css_baseurl);
 					if(!css_text.empty())
 					{
 						media_query_list::ptr new_media = media;
