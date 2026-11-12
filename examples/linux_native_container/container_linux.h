@@ -58,20 +58,20 @@ public:
 	container_linux();
 	virtual ~container_linux();
 
-	litehtml::uint_ptr create_font(const char* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm) override;
-	void delete_font(litehtml::uint_ptr hFont) override;
-	int text_width(const char* text, litehtml::uint_ptr hFont) override;
-	void draw_text(litehtml::uint_ptr hdc, const char* text, litehtml::uint_ptr hFont, litehtml::web_color color, const litehtml::position& pos) override;
+	uintptr_t create_font(const char* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm) override;
+	void delete_font(uintptr_t hFont) override;
+	int text_width(const char* text, uintptr_t hFont) override;
+	void draw_text(uintptr_t hdc, const char* text, uintptr_t hFont, litehtml::web_color color, const litehtml::position& pos) override;
 	int pt_to_px(int pt) const override;
 	int get_default_font_size() const override;
 	const char*	get_default_font_name() const override;
 	void load_image(const char* src, const char* baseurl, bool redraw_on_ready) override;
 	void get_image_size(const char* src, const char* baseurl, litehtml::size& sz) override;
-	void draw_background(litehtml::uint_ptr hdc, const std::vector<litehtml::background_paint>& bg) override;
-	void draw_borders(litehtml::uint_ptr hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) override;
-	void draw_list_marker(litehtml::uint_ptr hdc, const litehtml::list_marker& marker) override;
+	void draw_background(uintptr_t hdc, const std::vector<litehtml::background_paint>& bg) override;
+	void draw_borders(uintptr_t hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) override;
+	void draw_list_marker(uintptr_t hdc, const litehtml::list_marker& marker) override;
 	std::shared_ptr<litehtml::element>	create_element(const char *tag_name,
-														 const litehtml::string_map &attributes,
+														 const std::map<string, string> &attributes,
 														 const std::shared_ptr<litehtml::document> &doc) override;
 	void get_media_features(litehtml::media_features& media) const override;
 	void get_language(litehtml::string& language, litehtml::string & culture) const override;

@@ -308,7 +308,7 @@ litehtml::string litehtml::element::get_counter_value(const string& counter_name
 	return "0";
 }
 
-string litehtml::element::get_counters_value(const string_vector& parameters)
+string litehtml::element::get_counters_value(const std::vector<std::string>& parameters)
 {
 	string result = "";
 	if (parameters.size() >= 2) {
@@ -316,7 +316,7 @@ string litehtml::element::get_counters_value(const string_vector& parameters)
 		string delims = parameters[1];
 		litehtml::trim(delims, "\"'");
 
-		string_vector values;
+		std::vector<std::string> values;
 		
 		element::ptr current = shared_from_this();
 		while (current != nullptr)
@@ -381,7 +381,7 @@ std::vector<element::ptr> litehtml::element::get_siblings_before() const
 }
 
 
-void litehtml::element::parse_counter_tokens(const string_vector& tokens, const int default_value, std::function<void(const string_id&, const int)> handler) const {
+void litehtml::element::parse_counter_tokens(const std::vector<std::string>& tokens, const int default_value, std::function<void(const string_id&, const int)> handler) const {
 	int pos = 0;
 	while (pos < tokens.size()) {
 		string name = tokens[pos];
@@ -463,8 +463,8 @@ css_length		element::get_length_property		(string_id name, bool inherited, css_l
 web_color		element::get_color_property			(string_id name, bool inherited, web_color defval, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC(web_color())
 string			element::get_string_property		(string_id name, bool inherited, const string& defval, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC("")
 float			element::get_number_property		(string_id name, bool inherited, float defval, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC(0)
-string_vector	element::get_string_vector_property	(string_id name, bool inherited, const string_vector& default_value, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC({})
-int_vector		element::get_int_vector_property	(string_id name, bool inherited, const int_vector& default_value, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC({})
+std::vector<std::string>	element::get_string_vector_property	(string_id name, bool inherited, const std::vector<std::string>& default_value, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC({})
+std::vector<int>		element::get_int_vector_property	(string_id name, bool inherited, const std::vector<int>& default_value, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC({})
 length_vector	element::get_length_vector_property	(string_id name, bool inherited, const length_vector& default_value, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC({})
 size_vector		element::get_size_vector_property	(string_id name, bool inherited, const size_vector& default_value, uintptr_t css_properties_member_offset) const LITEHTML_RETURN_FUNC({})
 string			element::get_custom_property		(string_id name, const string& defval) const LITEHTML_RETURN_FUNC("")

@@ -18,7 +18,7 @@ static std::vector<string> array;
 
 static int init()
 {
-	string_vector names;
+	std::vector<std::string> names;
 	split_string(initial_string_ids, names, ",");
 	for (auto& name : names)
 	{

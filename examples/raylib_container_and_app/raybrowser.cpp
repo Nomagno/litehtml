@@ -39,7 +39,7 @@ int main(void) {
         clip.width = WIN_W;
         clip.height = WIN_H;
 
-        mydoc->draw((litehtml::uint_ptr)NULL, 0, 0, &clip);
+        mydoc->draw((uintptr_t)NULL, 0, 0, &clip);
 
 
         // Sends event data

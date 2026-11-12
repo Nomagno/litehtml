@@ -20,7 +20,7 @@ litehtml::media_query::ptr litehtml::media_query::create_from_string(const strin
 {
 	media_query::ptr query = std::make_shared<media_query>();
 
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(str, tokens, " \t\r\n", "", "(");
 
 	for(auto & token : tokens)
@@ -36,7 +36,7 @@ litehtml::media_query::ptr litehtml::media_query::create_from_string(const strin
 				token.erase(token.length() - 1, 1);
 			}
 			media_query_expression expr;
-			string_vector expr_tokens;
+			std::vector<std::string> expr_tokens;
 			split_string(token, expr_tokens, ":");
 			if(!expr_tokens.empty())
 			{
@@ -125,7 +125,7 @@ litehtml::media_query_list::ptr litehtml::media_query_list::create_from_string(c
 {
 	media_query_list::ptr list = std::make_shared<media_query_list>();
 
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(str, tokens, ",");
 
 	for(auto & token : tokens)

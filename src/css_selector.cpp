@@ -16,7 +16,7 @@ void litehtml::css_element_selector::parse_nth_child_params(const string& param,
 	}
 	else
 	{
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(param, tokens, " n", "n");
 
 		string s_num;
@@ -221,7 +221,7 @@ bool litehtml::css_selector::parse( const string& text )
 	{
 		return false;
 	}
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(text, tokens, "", " \t>+~", "([");
 
 	if(tokens.empty())

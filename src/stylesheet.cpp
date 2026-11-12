@@ -109,7 +109,7 @@ bool litehtml::css::parse_selectors( const string& txt, const style::ptr& styles
 {
 	string selector = txt;
 	trim(selector);
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(selector, tokens, ",");
 
 	bool added_something = false;
@@ -152,7 +152,7 @@ void litehtml::css::parse_atrule(const string& text, const char* baseurl, const 
 			iStr.erase(iStr.length() - 1);
 		}
 		trim(iStr);
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(iStr, tokens, " ", "", "(\"");
 		if(!tokens.empty())
 		{

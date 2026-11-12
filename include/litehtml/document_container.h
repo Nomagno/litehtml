@@ -55,7 +55,7 @@ namespace litehtml
 		virtual void				del_clip() = 0;
 		virtual void				get_client_rect(litehtml::position& client) const = 0;
 		virtual litehtml::element::ptr	create_element( const char* tag_name,
-														const litehtml::string_map& attributes,
+														const std::map<string, string>& attributes,
 														const std::shared_ptr<litehtml::document>& doc) = 0;
 
 		virtual void				get_media_features(litehtml::media_features& media) const = 0;

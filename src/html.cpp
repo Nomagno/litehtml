@@ -109,7 +109,7 @@ bool litehtml::value_in_list( const string& val, const string& strings, char del
 	return false;
 }
 
-void litehtml::split_string(const string& str, string_vector& tokens, const string& delims, const string& delims_preserve, const string& quote)
+void litehtml::split_string(const string& str, std::vector<std::string>& tokens, const string& delims, const string& delims_preserve, const string& quote)
 {
 	if(str.empty() || (delims.empty() && delims_preserve.empty()))
 	{
@@ -171,7 +171,7 @@ void litehtml::split_string(const string& str, string_vector& tokens, const stri
 	}
 }
 
-void litehtml::join_string(string& str, const string_vector& tokens, const string& delims)
+void litehtml::join_string(string& str, const std::vector<std::string>& tokens, const string& delims)
 {
 	str = "";
 	for (size_t i = 0; i < tokens.size(); i++)

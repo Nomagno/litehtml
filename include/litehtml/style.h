@@ -29,13 +29,13 @@ namespace litehtml
 
 		union {
 			int 			m_enum_item;
-			int_vector		m_enum_item_vector;
+			std::vector<int>		m_enum_item_vector;
 			css_length		m_length;
 			length_vector	m_length_vector;
 			float			m_number;
 			web_color		m_color;
 			string			m_string;
-			string_vector	m_string_vector;
+			std::vector<std::string>	m_string_vector;
 			size_vector		m_size_vector;
 		};
 
@@ -51,7 +51,7 @@ namespace litehtml
 			: m_string(str), m_type(type), m_important(important)
 		{
 		}
-		property_value(const string_vector& vec, bool important)
+		property_value(const std::vector<std::string>& vec, bool important)
 			: m_string_vector(vec), m_type(prop_type_string_vector), m_important(important)
 		{
 		}
@@ -71,7 +71,7 @@ namespace litehtml
 			: m_enum_item(enum_item), m_type(prop_type_enum_item), m_important(important)
 		{
 		}
-		property_value(const int_vector& vec, bool important)
+		property_value(const std::vector<int>& vec, bool important)
 			: m_enum_item_vector(vec), m_type(prop_type_enum_item_vector), m_important(important)
 		{
 		}
@@ -92,7 +92,7 @@ namespace litehtml
 				m_string.~string();
 				break;
 			case prop_type_string_vector:
-				m_string_vector.~string_vector();
+				m_string_vector.~vector<std::string>();
 				break;
 			case prop_type_length:
 				m_length.~css_length();
@@ -101,7 +101,7 @@ namespace litehtml
 				m_length_vector.~length_vector();
 				break;
 			case prop_type_enum_item_vector:
-				m_enum_item_vector.~int_vector();
+				m_enum_item_vector.~vector<int>();
 				break;
 			case prop_type_color:
 				m_color.~web_color();

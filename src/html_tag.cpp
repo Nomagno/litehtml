@@ -392,14 +392,14 @@ float litehtml::html_tag::get_number_property(string_id name, bool inherited, fl
 	return get_property_impl<float, prop_type_number, &property_value::m_number>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::string_vector litehtml::html_tag::get_string_vector_property(string_id name, bool inherited, const string_vector& default_value, uintptr_t css_properties_member_offset) const
+std::vector<std::string> litehtml::html_tag::get_string_vector_property(string_id name, bool inherited, const std::vector<std::string>& default_value, uintptr_t css_properties_member_offset) const
 {
-	return get_property_impl<string_vector, prop_type_string_vector, &property_value::m_string_vector>(name, inherited, default_value, css_properties_member_offset);
+	return get_property_impl<std::vector<std::string>, prop_type_string_vector, &property_value::m_string_vector>(name, inherited, default_value, css_properties_member_offset);
 }
 
-litehtml::int_vector litehtml::html_tag::get_int_vector_property(string_id name, bool inherited, const int_vector& default_value, uintptr_t css_properties_member_offset) const
+std::vector<int> litehtml::html_tag::get_int_vector_property(string_id name, bool inherited, const std::vector<int>& default_value, uintptr_t css_properties_member_offset) const
 {
-	return get_property_impl<int_vector, prop_type_enum_item_vector, &property_value::m_enum_item_vector>(name, inherited, default_value, css_properties_member_offset);
+	return get_property_impl<std::vector<int>, prop_type_enum_item_vector, &property_value::m_enum_item_vector>(name, inherited, default_value, css_properties_member_offset);
 }
 
 litehtml::length_vector litehtml::html_tag::get_length_vector_property(string_id name, bool inherited, const length_vector& default_value, uintptr_t css_properties_member_offset) const
@@ -1046,7 +1046,7 @@ bool litehtml::html_tag::set_pseudo_class( string_id cls, bool add )
 
 bool litehtml::html_tag::set_class( const char* pclass, bool add )
 {
-	string_vector classes;
+	std::vector<std::string> classes;
 	bool changed = false;
 
 	split_string( pclass, classes, " " );

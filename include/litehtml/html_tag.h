@@ -25,10 +25,10 @@ namespace litehtml
 	protected:
 		string_id				m_tag;
 		string_id				m_id;
-		string_vector			m_str_classes;
+		std::vector<std::string>			m_str_classes;
 		std::vector<string_id>	m_classes;
 		litehtml::style			m_style;
-		string_map				m_attrs;
+		std::map<string, string>				m_attrs;
 		std::vector<string_id>	m_pseudo_classes;
 
 		void			select_all(const css_selector& selector, elements_list& res) override;
@@ -77,8 +77,8 @@ namespace litehtml
 		web_color			get_color_property (string_id name, bool inherited, web_color     default_value, uintptr_t css_properties_member_offset) const override;
 		string				get_string_property(string_id name, bool inherited, const string& default_value, uintptr_t css_properties_member_offset) const override;
 		float				get_number_property(string_id name, bool inherited, float         default_value, uintptr_t css_properties_member_offset) const override;
-		string_vector		get_string_vector_property(string_id name, bool inherited, const string_vector& default_value, uintptr_t css_properties_member_offset) const override;
-		int_vector			get_int_vector_property   (string_id name, bool inherited, const int_vector&    default_value, uintptr_t css_properties_member_offset) const override;
+		std::vector<std::string>		get_string_vector_property(string_id name, bool inherited, const std::vector<std::string>& default_value, uintptr_t css_properties_member_offset) const override;
+		std::vector<int>			get_int_vector_property   (string_id name, bool inherited, const std::vector<int>&    default_value, uintptr_t css_properties_member_offset) const override;
 		length_vector		get_length_vector_property(string_id name, bool inherited, const length_vector& default_value, uintptr_t css_properties_member_offset) const override;
 		size_vector			get_size_vector_property  (string_id name, bool inherited, const size_vector&   default_value, uintptr_t css_properties_member_offset) const override;
 		string				get_custom_property(string_id name, const string& default_value) const override;

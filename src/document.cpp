@@ -580,7 +580,7 @@ bool litehtml::document::on_lbutton_up( int x, int y, int client_x, int client_y
 	return false;
 }
 
-litehtml::element::ptr litehtml::document::create_element(const char* tag_name, const string_map& attributes)
+litehtml::element::ptr litehtml::document::create_element(const char* tag_name, const std::map<string, string>& attributes)
 {
 	element::ptr newTag;
 	document::ptr this_doc = shared_from_this();
@@ -727,7 +727,7 @@ void litehtml::document::create_node(void* gnode, elements_list& elements, bool 
 	{
 	case GUMBO_NODE_ELEMENT:
 		{
-			string_map attrs;
+			std::map<string, string> attrs;
 			GumboAttribute* attr;
 			for (unsigned int i = 0; i < node->v.element.attributes.length; i++)
 			{

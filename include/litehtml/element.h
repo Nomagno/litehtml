@@ -108,8 +108,8 @@ namespace litehtml
 		virtual web_color			get_color_property (string_id name, bool inherited, web_color     default_value, uintptr_t css_properties_member_offset) const;
 		virtual string				get_string_property(string_id name, bool inherited, const string& default_value, uintptr_t css_properties_member_offset) const;
 		virtual float				get_number_property(string_id name, bool inherited, float         default_value, uintptr_t css_properties_member_offset) const;
-		virtual string_vector		get_string_vector_property(string_id name, bool inherited, const string_vector& default_value, uintptr_t css_properties_member_offset) const;
-		virtual int_vector			get_int_vector_property   (string_id name, bool inherited, const int_vector&    default_value, uintptr_t css_properties_member_offset) const;
+		virtual std::vector<std::string>		get_string_vector_property(string_id name, bool inherited, const std::vector<std::string>& default_value, uintptr_t css_properties_member_offset) const;
+		virtual std::vector<int>			get_int_vector_property   (string_id name, bool inherited, const std::vector<int>&    default_value, uintptr_t css_properties_member_offset) const;
 		virtual length_vector		get_length_vector_property(string_id name, bool inherited, const length_vector& default_value, uintptr_t css_properties_member_offset) const;
 		virtual size_vector			get_size_vector_property  (string_id name, bool inherited, const size_vector&   default_value, uintptr_t css_properties_member_offset) const;
 		virtual string				get_custom_property(string_id name, const string& default_value) const;
@@ -149,14 +149,14 @@ namespace litehtml
 		}
 
 		string				get_counter_value(const string& counter_name);
-		string				get_counters_value(const string_vector& parameters);
+		string				get_counters_value(const std::vector<std::string>& parameters);
 		void				increment_counter(const string_id& counter_name_id, const int increment = 1);
 		void				reset_counter(const string_id& counter_name_id, const int value = 0);
 
 	private:
 		std::vector<element::ptr> get_siblings_before() const;
 		bool				find_counter(const string_id& counter_name_id, std::map<string_id, int>::iterator& map_iterator);
-		void				parse_counter_tokens(const string_vector& tokens, const int default_value, std::function<void(const string_id&, const int)> handler) const;
+		void				parse_counter_tokens(const std::vector<std::string>& tokens, const int default_value, std::function<void(const string_id&, const int)> handler) const;
 	};
 
 	//////////////////////////////////////////////////////////////////////////

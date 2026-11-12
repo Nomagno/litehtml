@@ -12,10 +12,7 @@ namespace litehtml
 	class document;
 	class element;
 
-	typedef std::map<string, string>					string_map;
 	typedef std::list< std::shared_ptr<element> >		elements_list;
-	typedef std::vector<int>							int_vector;
-	typedef std::vector<string>							string_vector;
 
 	const unsigned int font_decoration_none			= 0x00;
 	const unsigned int font_decoration_underline	= 0x01;

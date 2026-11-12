@@ -72,7 +72,7 @@ void style::parse_property(const string& txt, const string& baseurl, document_co
 
 		if(!name.empty() && !val.empty())
 		{
-			string_vector vals;
+			std::vector<std::string> vals;
 			split_string(val, vals, "!");
 			if(vals.size() == 1)
 			{
@@ -223,7 +223,7 @@ void style::add_property(string_id name, const string& val, const string& baseur
 	// Parse borders shorthand properties 
 	case _border_:
 	{
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(val, tokens, " ", "", "(");
 		for (const auto& token : tokens)
 		{
@@ -263,7 +263,7 @@ void style::add_property(string_id name, const string& val, const string& baseur
 	case _border_top_:
 	case _border_bottom_:
 	{
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(val, tokens, " ", "", "(");
 		for (const auto& token : tokens)
 		{
@@ -294,7 +294,7 @@ void style::add_property(string_id name, const string& val, const string& baseur
 	{
 		string prop = name == _border_width_ ? "-width" : name == _border_style_ ? "-style" : "-color";
 
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(val, tokens, " ");
 		if (tokens.size() == 4)
 		{
@@ -361,7 +361,7 @@ void style::add_property(string_id name, const string& val, const string& baseur
 	// Parse border-radius shorthand properties 
 	case _border_radius_:
 	{
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(val, tokens, "/");
 		if (tokens.size() == 1)
 		{
@@ -432,7 +432,7 @@ void style::add_property(string_id name, const string& val, const string& baseur
 		add_parsed_property(_list_style_image_,			property_value("",							important));
 		add_parsed_property(_list_style_image_baseurl_,	property_value("",							important));
 
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(val, tokens, " ", "", "(");
 		for (const auto& token : tokens)
 		{
@@ -507,7 +507,7 @@ void style::add_property(string_id name, const string& val, const string& baseur
 	// Parse flex-flow shorthand properties
 	case _flex_flow_:
 	{
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(val, tokens, " ");
 		for (const auto& tok : tokens)
 		{
@@ -552,7 +552,7 @@ void style::add_property(string_id name, const string& val, const string& baseur
 	case _counter_increment_:
 	case _counter_reset_:
 	{	
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(val, tokens, " ");
 		add_parsed_property(name, property_value(tokens, important));
 		break;
@@ -583,7 +583,7 @@ css_length style::parse_border_width(const string& str)
 
 void style::parse_two_lengths(const string& str, css_length len[2])
 {
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(str, tokens, " ");
 	if (tokens.size() == 1)
 	{
@@ -600,7 +600,7 @@ void style::parse_two_lengths(const string& str, css_length len[2])
 
 int style::parse_four_lengths(const string& str, css_length len[4])
 {
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(str, tokens, " ");
 	if (tokens.size() == 0 || tokens.size() > 4)
 	{
@@ -615,13 +615,13 @@ int style::parse_four_lengths(const string& str, css_length len[4])
 
 void style::parse_background(const string& val, const string& baseurl, bool important, document_container* container)
 {
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(val, tokens, ",", "", "(");
 	if (tokens.empty()) return;
 
 	web_color color;
-	string_vector images; 
-	int_vector repeats, origins, clips, attachments;
+	std::vector<std::string> images; 
+	std::vector<int> repeats, origins, clips, attachments;
 	length_vector x_positions, y_positions;
 	size_vector sizes;
 
@@ -671,7 +671,7 @@ bool style::parse_one_background(const string& val, document_container* containe
 		return true;
 	}
 
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(val, tokens, " \t\n\r", "", "(");
 
 	bool color_found = false;
@@ -736,7 +736,7 @@ bool style::parse_one_background(const string& val, document_container* containe
 	
 	if (position != "")
 	{
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(position, tokens, "/");
 
 		if (tokens.size() > 2) return false;
@@ -753,11 +753,11 @@ bool style::parse_one_background(const string& val, document_container* containe
 
 void style::parse_background_image(const string& val, const string& baseurl, bool important)
 {
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(val, tokens, ",", "", "(");
 	if (tokens.empty()) return;
 
-	string_vector images;
+	std::vector<std::string> images;
 
 	for (const auto& token : tokens)
 	{
@@ -772,11 +772,11 @@ void style::parse_background_image(const string& val, const string& baseurl, boo
 
 void style::parse_keyword_comma_list(string_id name, const string& val, bool important)
 {
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(val, tokens, ",");
 	if (tokens.empty()) return;
 
-	int_vector vec;
+	std::vector<int> vec;
 
 	for (auto& token : tokens)
 	{
@@ -791,7 +791,7 @@ void style::parse_keyword_comma_list(string_id name, const string& val, bool imp
 
 void style::parse_background_position(const string& val, bool important)
 {
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(val, tokens, ",");
 	if (tokens.empty()) return;
 
@@ -811,7 +811,7 @@ void style::parse_background_position(const string& val, bool important)
 
 bool style::parse_one_background_position(const string& val, css_length& x, css_length& y)
 {
-	string_vector pos;
+	std::vector<std::string> pos;
 	split_string(val, pos, " \t");
 	
 	if (pos.empty() || pos.size() > 2)
@@ -901,7 +901,7 @@ bool style::parse_one_background_position(const string& val, css_length& x, css_
 
 void style::parse_background_size(const string& val, bool important)
 {
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(val, tokens, ",");
 	if (tokens.empty()) return;
 
@@ -919,7 +919,7 @@ void style::parse_background_size(const string& val, bool important)
 
 bool style::parse_one_background_size(const string& val, css_size& size)
 {
-	string_vector res;
+	std::vector<std::string> res;
 	split_string(val, res, " \t");
 	if (res.empty())
 	{
@@ -957,7 +957,7 @@ void style::parse_font(const string& val, bool important)
 		add_parsed_property(_line_height_, property_value(line_height_normal, important));
 	}
 
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(val, tokens, " ", "", "\"");
 
 	int idx;
@@ -992,7 +992,7 @@ void style::parse_font(const string& val, bool important)
 		else if(t_isdigit(token[0]) || token[0] == '.' || 
 			value_in_list(token, font_size_strings) || token.find('/') != -1)
 		{
-			string_vector szlh;
+			std::vector<std::string> szlh;
 			split_string(token, szlh, "/");
 			if(!szlh.empty())
 			{
@@ -1041,7 +1041,7 @@ void style::parse_flex(const string& val, bool important)
 	}
 	else
 	{
-		string_vector tokens;
+		std::vector<std::string> tokens;
 		split_string(val, tokens, " ");
 		if (tokens.size() == 3)
 		{
@@ -1096,7 +1096,7 @@ void style::parse_flex(const string& val, bool important)
 
 void style::parse_align_self(string_id name, const string& val, bool important)
 {
-	string_vector tokens;
+	std::vector<std::string> tokens;
 	split_string(val, tokens, " ");
 	if(tokens.size() == 1)
 	{

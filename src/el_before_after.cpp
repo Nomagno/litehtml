@@ -160,7 +160,7 @@ void litehtml::el_before_after_base::add_function( const string& fnc, const stri
 	// counters
 	case 2:
 		{
-			string_vector tokens;
+			std::vector<std::string> tokens;
 			split_string(params, tokens, ",");
 			add_text(get_counters_value(tokens));
 		}

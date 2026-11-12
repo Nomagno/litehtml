@@ -313,7 +313,7 @@ int litehtml::formatting_context::find_next_line_top(int top, int width, int def
 	def_right += m_current_left;
 
 	int new_top = top;
-	int_vector points;
+	std::vector<int> points;
 
 	for(const auto& fb : m_floats_left)
 	{

@@ -18,7 +18,7 @@ container_linux::~container_linux()
 	cairo_destroy(m_temp_cr);
 }
 
-litehtml::uint_ptr container_linux::create_font( const char* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm )
+uintptr_t container_linux::create_font( const char* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm )
 {
     PangoFontDescription *desc = pango_font_description_from_string (faceName);
     pango_font_description_set_absolute_size(desc, size * PANGO_SCALE);
@@ -91,10 +91,10 @@ litehtml::uint_ptr container_linux::create_font( const char* faceName, int size,
         ret->strikethrough_position = PANGO_PIXELS(ret->strikethrough_position);
 	}
 
-	return (litehtml::uint_ptr) ret;
+	return (uintptr_t) ret;
 }
 
-void container_linux::delete_font( litehtml::uint_ptr hFont )
+void container_linux::delete_font( uintptr_t hFont )
 {
 	auto* fnt = (cairo_font*) hFont;
 	if(fnt)
@@ -104,7 +104,7 @@ void container_linux::delete_font( litehtml::uint_ptr hFont )
 	}
 }
 
-int container_linux::text_width( const char* text, litehtml::uint_ptr hFont )
+int container_linux::text_width( const char* text, uintptr_t hFont )
 {
 	auto* fnt = (cairo_font*) hFont;
 
@@ -126,7 +126,7 @@ int container_linux::text_width( const char* text, litehtml::uint_ptr hFont )
 	return (int) x_width;
 }
 
-void container_linux::draw_text( litehtml::uint_ptr hdc, const char* text, litehtml::uint_ptr hFont, litehtml::web_color color, const litehtml::position& pos )
+void container_linux::draw_text( uintptr_t hdc, const char* text, uintptr_t hFont, litehtml::web_color color, const litehtml::position& pos )
 {
 	auto* fnt = (cairo_font*) hFont;
 	auto* cr = (cairo_t*) hdc;
@@ -194,7 +194,7 @@ int container_linux::get_default_font_size() const
 	return pt_to_px(12);
 }
 
-void container_linux::draw_list_marker( litehtml::uint_ptr hdc, const litehtml::list_marker& marker )
+void container_linux::draw_list_marker( uintptr_t hdc, const litehtml::list_marker& marker )
 {
 	if(!marker.image.empty())
 	{
@@ -290,7 +290,7 @@ void container_linux::get_image_size( const char* src, const char* baseurl, lite
 	}
 }
 
-void container_linux::draw_background( litehtml::uint_ptr hdc, const std::vector<litehtml::background_paint>& bgvec )
+void container_linux::draw_background( uintptr_t hdc, const std::vector<litehtml::background_paint>& bgvec )
 {
 	auto* cr = (cairo_t*) hdc;
 	cairo_save(cr);
@@ -408,7 +408,7 @@ void container_linux::add_path_arc(cairo_t* cr, double x, double y, double rx, d
 	}
 }
 
-void container_linux::draw_borders(litehtml::uint_ptr hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root)
+void container_linux::draw_borders(uintptr_t hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root)
 {
 	auto* cr = (cairo_t*) hdc;
 	cairo_save(cr);
@@ -773,7 +773,7 @@ const char* container_linux::get_default_font_name() const
 }
 
 std::shared_ptr<litehtml::element>	container_linux::create_element(const char *tag_name,
-																	  const litehtml::string_map &attributes,
+																	  const std::map<string, string> &attributes,
 																	  const std::shared_ptr<litehtml::document> &doc)
 {
 	return nullptr;

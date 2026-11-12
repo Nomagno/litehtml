@@ -14,7 +14,7 @@
         web_color        color;
         position        pos;
         int                index;
-        uint_ptr        font;
+        uintptr_t        font;
     };
 */
 
@@ -70,7 +70,7 @@ void init_default_font() {
 #define RAYFONT(x) (((void *)x == (void *)0) ? (init_default_font(), &default_font) : ((FontInfo *)x))
 #define DEFAULT_FONT RAYFONT(0)
 
-litehtml::uint_ptr raylib_container::create_font(const char* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm) {
+uintptr_t raylib_container::create_font(const char* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm) {
     init_default_font();
 
     FontInfo *f = new FontInfo;
@@ -88,14 +88,14 @@ litehtml::uint_ptr raylib_container::create_font(const char* faceName, int size,
     fm->height = randomsize.y;
     fm->x_height = xsize.y;
     
-    return (litehtml::uint_ptr)f;
+    return (uintptr_t)f;
 }
 
-void raylib_container::delete_font(litehtml::uint_ptr hFont) {
+void raylib_container::delete_font(uintptr_t hFont) {
     delete (FontInfo *)hFont;
 }
 
-int raylib_container::text_width(const char* text, litehtml::uint_ptr hFont) {
+int raylib_container::text_width(const char* text, uintptr_t hFont) {
     if (text == NULL)
         return 0;
     if (text[0] == ' ' && text[1] == '\0') {
@@ -108,7 +108,7 @@ int raylib_container::text_width(const char* text, litehtml::uint_ptr hFont) {
     return size.x;
 }
 
-void raylib_container::draw_text(litehtml::uint_ptr hdc, const char* text, litehtml::uint_ptr hFont, litehtml::web_color color, const litehtml::position& pos) {
+void raylib_container::draw_text(uintptr_t hdc, const char* text, uintptr_t hFont, litehtml::web_color color, const litehtml::position& pos) {
     Color ray_color = {
         .r = color.red,
         .g = color.green,
@@ -132,7 +132,7 @@ const char* raylib_container::get_default_font_name() const {
     return DEFAULT_FONT_NAME;
 }
 
-void raylib_container::draw_list_marker(litehtml::uint_ptr hdc, const litehtml::list_marker& marker) {
+void raylib_container::draw_list_marker(uintptr_t hdc, const litehtml::list_marker& marker) {
     if (marker.pos.x < clipping.x)
         return;
     if (marker.pos.y < clipping.y)
@@ -142,7 +142,7 @@ void raylib_container::draw_list_marker(litehtml::uint_ptr hdc, const litehtml::
     if (marker.pos.y > clipping.y + clipping.height)
         return;
 
-    draw_text(hdc, "o", (litehtml::uint_ptr)DEFAULT_FONT, marker.color, marker.pos);
+    draw_text(hdc, "o", (uintptr_t)DEFAULT_FONT, marker.color, marker.pos);
 }
 
 void raylib_container::load_image(const char* src, const char* baseurl, bool redraw_on_ready) {
@@ -190,7 +190,7 @@ void print_background_paint(const litehtml::background_paint &p) {
 // bg is guaranteed to have at least one item.
 // backgrounds in bg are in CSS order - the last one is the farthest from the user.
 // only the last background has valid background-color.
-void raylib_container::draw_background(litehtml::uint_ptr hdc, const std::vector<litehtml::background_paint>& bg) {
+void raylib_container::draw_background(uintptr_t hdc, const std::vector<litehtml::background_paint>& bg) {
     //for (const litehtml::background_paint &paint : bg) {
     for_each (bg.rbegin(), bg.rend(), [=](const litehtml::background_paint &paint) {
         //print_background_paint(paint);
@@ -254,7 +254,7 @@ void raylib_container::draw_background(litehtml::uint_ptr hdc, const std::vector
     // }
 }
 
-void raylib_container::draw_borders(litehtml::uint_ptr hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) {
+void raylib_container::draw_borders(uintptr_t hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) {
 	/*enum border_style
 	{
 		border_style_none,
@@ -410,7 +410,7 @@ void raylib_container::get_client_rect(litehtml::position& client) const {
     client.height = this->height;
 }
 litehtml::element::ptr raylib_container::create_element( const char* tag_name,
-										const litehtml::string_map& attributes,
+										const std::map<std::string, std::string>& attributes,
 										const std::shared_ptr<litehtml::document>& doc) {
     // You can process custom tags here if you want
     return NULL;

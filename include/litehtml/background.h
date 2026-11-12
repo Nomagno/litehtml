@@ -12,16 +12,16 @@ namespace litehtml
 	class background
 	{
 	public:
-		string_vector			m_image;
+		std::vector<std::string>			m_image;
 		string					m_baseurl;
 		web_color				m_color;
-		int_vector				m_attachment;
+		std::vector<int>				m_attachment;
 		length_vector			m_position_x;
 		length_vector			m_position_y;
 		size_vector				m_size;
-		int_vector				m_repeat;
-		int_vector				m_clip;
-		int_vector				m_origin;
+		std::vector<int>				m_repeat;
+		std::vector<int>				m_clip;
+		std::vector<int>				m_origin;
 
 		bool is_empty() const
 		{
