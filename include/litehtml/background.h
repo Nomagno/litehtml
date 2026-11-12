@@ -18,7 +18,7 @@ namespace litehtml
 		std::vector<int>				m_attachment;
 		length_vector			m_position_x;
 		length_vector			m_position_y;
-		size_vector				m_size;
+		std::vector<css_size>   m_size;
 		std::vector<int>				m_repeat;
 		std::vector<int>				m_clip;
 		std::vector<int>				m_origin;

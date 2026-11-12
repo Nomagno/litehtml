@@ -35,8 +35,8 @@ namespace litehtml
 			float			m_number;
 			web_color		m_color;
 			string			m_string;
-			std::vector<std::string>	m_string_vector;
-			size_vector		m_size_vector;
+			std::vector<std::string> m_string_vector;
+			std::vector<css_size>   m_size_vector;
 		};
 
 		property_value()

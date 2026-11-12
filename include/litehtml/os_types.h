@@ -6,8 +6,7 @@
 
 namespace litehtml
 {
-	using std::string;
-
+    using std::string;
 #if defined( WIN32 ) || defined( _WIN32 ) || defined( WINCE )
 
 // noexcept appeared since Visual Studio 2015

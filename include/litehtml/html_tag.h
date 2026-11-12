@@ -80,7 +80,7 @@ namespace litehtml
 		std::vector<std::string>		get_string_vector_property(string_id name, bool inherited, const std::vector<std::string>& default_value, uintptr_t css_properties_member_offset) const override;
 		std::vector<int>			get_int_vector_property   (string_id name, bool inherited, const std::vector<int>&    default_value, uintptr_t css_properties_member_offset) const override;
 		length_vector		get_length_vector_property(string_id name, bool inherited, const length_vector& default_value, uintptr_t css_properties_member_offset) const override;
-		size_vector			get_size_vector_property  (string_id name, bool inherited, const size_vector&   default_value, uintptr_t css_properties_member_offset) const override;
+		std::vector<css_size> get_size_vector_property  (string_id name, bool inherited, const std::vector<css_size>&   default_value, uintptr_t css_properties_member_offset) const override;
 		string				get_custom_property(string_id name, const string& default_value) const override;
 
 		elements_list&	children();
