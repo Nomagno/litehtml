@@ -15,7 +15,7 @@ private:
     int width;
     int height;
     litehtml::position clipping;
-    std::unordered_map<std::string, Image> image_cache;
+    std::unordered_map<std::string, Texture> image_cache;
 public:
     raylib_container(int width, int height);
     ~raylib_container() = default;

@@ -4,6 +4,7 @@
 #include <string>
 #include <filesystem>
 #include <cstdio>
+#include <cstdlib>
 
 /*
     struct list_marker
@@ -28,7 +29,28 @@ raylib_container::raylib_container(int width, int height) {
     clipping.height = height;
 }
 
-std::string makeurl(const char *base, const char *url) {
+bool is_unresolved(const std::string &url) {
+    std::string s = url;
+    if (s.find("://") != std::string::npos)
+        return true;
+    else
+        return false;
+}
+
+std::string resolve(const char *url) {
+    // Let's assume paths can't be more than 4096 characters long since apparently PATH_MAXA is complicated...
+    char real_path[4096];
+    char *ptr;
+
+    ptr = realpath(url, real_path);
+    if (ptr == NULL) {
+        fprintf(stderr, "Can not resolve URL: %s\n", url);
+        return url;
+    }
+    return real_path;
+}
+
+std::string makeurl_raw(const char *base, const char *url) {
     if (base == NULL)
         base = "";
     if (url == NULL)
@@ -40,8 +62,13 @@ std::string makeurl(const char *base, const char *url) {
     else
         tmpurl += "/";
     tmpurl += url;
-    return tmpurl;
+    return tmpurl.c_str();
 }
+
+std::string makeurl(const char *base, const char *url) {
+    return resolve(makeurl_raw(base, url).c_str());
+}
+
 
 struct FontInfo {
     unsigned size;
@@ -146,16 +173,28 @@ void raylib_container::draw_list_marker(uintptr_t hdc, const litehtml::list_mark
 }
 
 void raylib_container::load_image(const char* src, const char* baseurl, bool redraw_on_ready) {
+    if (is_unresolved(makeurl(baseurl, src)))
+        return;
+        
     // This is just for caching the image if you want, not mandatory to implement
     if (image_cache.find(makeurl(baseurl, src)) == image_cache.end()) {
-        image_cache[makeurl(baseurl, src)] = LoadImage(makeurl(baseurl, src).c_str());
+        //printf("Caching:%s;\n", makeurl(baseurl, src).c_str());
+        image_cache[makeurl(baseurl, src)] = LoadTexture(makeurl(baseurl, src).c_str());
     }
 }
 
+
+
 void raylib_container::get_image_size(const char* src, const char* baseurl, litehtml::size& sz) {
-    Image im = image_cache[makeurl(baseurl, src)];
+    if (is_unresolved(makeurl(baseurl, src))) {
+        sz.width = 0;
+        sz.height = 0;
+        return;
+    }
+
+    Texture im = image_cache[makeurl(baseurl, src)];
     sz.width = im.width;
-    sz.width = im.height;
+    sz.height = im.height;
 }
 
 void print_background_paint(const litehtml::background_paint &p) {
@@ -191,7 +230,6 @@ void print_background_paint(const litehtml::background_paint &p) {
 // backgrounds in bg are in CSS order - the last one is the farthest from the user.
 // only the last background has valid background-color.
 void raylib_container::draw_background(uintptr_t hdc, const std::vector<litehtml::background_paint>& bg) {
-    //for (const litehtml::background_paint &paint : bg) {
     for_each (bg.rbegin(), bg.rend(), [=](const litehtml::background_paint &paint) {
         //print_background_paint(paint);
 
@@ -230,28 +268,21 @@ void raylib_container::draw_background(uintptr_t hdc, const std::vector<litehtml
             UnloadTexture(tex);
             UnloadImage(im);
         } else {
-            Image im = image_cache[imagepath];
-            Texture2D tex = LoadTextureFromImage(im);
+            if (is_unresolved(imagepath))
+                return;
 
-            int saved_w = tex.width;
-            int saved_h = tex.height;
+            Texture im = image_cache[imagepath];
+            //printf("Path:%s;\n", imagepath.c_str());
 
-            if (paint.image_size.width < tex.width)
-                tex.width = paint.image_size.width;
-            if (paint.image_size.height < tex.height)
-                tex.height = paint.image_size.height;
+            DrawTexturePro( im,
+                            {0, 0, (float)im.width, (float)im.height},
+                            {(float)paint.position_x, (float)paint.position_y, (float)paint.image_size.width, (float)paint.image_size.height},
+                            {0, 0}, // Origin
+                            0, // Rotation
+                            WHITE);
 
-            DrawTexture(tex, paint.position_x, paint.position_y, ray_color);
-
-            tex.width = saved_w;
-            tex.height = saved_h;
-
-            UnloadTexture(tex);
         }
-
-
     });
-    // }
 }
 
 void raylib_container::draw_borders(uintptr_t hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) {
@@ -361,8 +392,13 @@ void raylib_container::transform_text(litehtml::string& text, litehtml::text_tra
 }
 
 void raylib_container::import_file(litehtml::string& text, const litehtml::string& url, litehtml::string& baseurl) {
-    // TODO: There is no documentation indicating that this has to be done
-    baseurl = makeurl(baseurl.c_str(), url.c_str());
+    // TODO: There is no documentation indicating that this has to be done    
+    baseurl = makeurl_raw(base_url.c_str(), url.c_str());
+
+    std::string final_url = makeurl(base_url.c_str(), url.c_str());
+    if (is_unresolved(final_url)) {
+        return;
+    }
 
     char *buffer = 0;
     long length;
